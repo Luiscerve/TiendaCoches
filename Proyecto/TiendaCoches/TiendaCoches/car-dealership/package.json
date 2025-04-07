@@ -1,0 +1,24 @@
+{
+  "name": "car-dealership",
+  "version": "1.0.0",
+  "description": "A dynamic car dealership web application utilizing JSON and YAML data sources with Bootstrap for design.",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src",
+    "build": "echo 'Build step not defined'",
+    "test": "echo 'No tests defined'"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.0",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "car",
+    "dealership",
+    "web",
+    "application"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

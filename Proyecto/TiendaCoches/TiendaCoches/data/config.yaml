@@ -1,0 +1,7 @@
+maxItemsPerPage: 10
+theme: dark
+language: es
+showImages: true
+animations:
+  transition: fade
+  duration: 300

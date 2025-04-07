@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AutoPremium - Concesionario de Vehículos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml/dist/js-yaml.min.js"></script>
+  <style>
+    body {
+      padding-top: 80px;
+    }
+    .car-img {
+      height: 500px;
+      object-fit: cover;
+    }
+    .modelo-card {
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .modelo-card:hover {
+      transform: translateY(-10px);
+    }
+    .bg-car-dark {
+      background-color: #1a1a1a;
+    }
+    /* Add styles for list view */
+    .list-view .card {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .list-view .card img {
+      width: 150px;
+      height: auto;
+      margin-right: 15px;
+    }
+    /* Ensure all card images have the same size */
+    .card-img-top {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+ 
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#"><i class="bi bi-car-front fs-4"></i> AutoPremium</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#modelos">Modelos</a></li>
+        <li class="nav-item">
+          <button id="themeToggle" class="btn btn-outline-light ms-3">Modo Oscuro</button>
+        </li>
+      </ul>
+      <form id="searchForm" class="d-flex ms-3">
+        <input id="searchInput" class="form-control me-2" type="search" placeholder="Buscar modelo" aria-label="Buscar">
+        <button class="btn btn-outline-light" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
+</nav>
+ 
+<!-- Carrusel -->
+<section id="inicio" class="mb-5">
+  <div id="carouselCoches" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8" class="d-block w-100 car-img" alt="Coche Deportivo">
+        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50">
+          <h2>Descubre Nuestra Colección</h2>
+          <p>Los mejores vehículos premium del mercado</p>
+          <a href="#modelos" class="btn btn-danger">Ver Modelos</a>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" class="d-block w-100 car-img" alt="Coche SUV">
+        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50">
+          <h2>Financiación Flexible</h2>
+          <p>Soluciones adaptadas a tus necesidades</p>
+          <a href="#contacto" class="btn btn-danger">Solicitar Info</a>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselCoches" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselCoches" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</section>
+ 
+<!-- Filtro y Vista -->
+<section id="filtros" class="py-3 bg-light">
+  <div class="container d-flex justify-content-between align-items-center">
+    <div>
+      <label for="categoriaFiltro" class="form-label">Filtrar por categoría:</label>
+      <select id="categoriaFiltro" class="form-select">
+        <option value="all">Todos</option>
+        <option value="deportivo">Deportivo</option>
+        <option value="suv">SUV</option>
+      </select>
+    </div>
+    <div>
+      <button id="vistaTarjetas" class="btn btn-primary">Vista Tarjetas</button>
+      <button id="vistaLista" class="btn btn-secondary">Vista Lista</button>
+    </div>
+  </div>
+</section>
+
+<!-- Contenedor dinámico -->
+<section id="contenidoDinamico" class="py-5">
+  <div class="container">
+    <div id="contenido" class="row g-4"></div>
+  </div>
+</section>
+
+<!-- Modelos -->
+<section id="modelos" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-5">Nuestros Modelos Destacados</h2>
+    <div class="row g-4">
+      <!-- Cards will be dynamically added here -->
+    </div>
+  </div>
+</section>
+ 
+<!-- Modal Detalle Dinámico -->
+<div class="modal fade" id="modalDetalle" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detalleTitulo"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <img id="detalleImg" src="" class="img-fluid mb-3" alt="Detalle coche">
+        <p><strong>Precio:</strong> <span id="detallePrecio"></span></p>
+        <p id="detalleInfo"></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalTestDrive" data-bs-dismiss="modal">Agendar Prueba</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- Modal Test Drive -->
+<div class="modal fade" id="modalTestDrive">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Agendar Prueba de Manejo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Nombre completo" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" class="form-control" placeholder="Email" required>
+          </div>
+          <div class="mb-3">
+            <input type="date" class="form-control" required>
+          </div>
+          <button class="btn btn-danger w-100">Confirmar Cita</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- Script para rellenar el modal dinámicamente -->
+<script>
+  const modalDetalle = document.getElementById('modalDetalle');
+  modalDetalle.addEventListener('show.bs.modal', event => {
+    const card = event.relatedTarget;
+    const titulo = card.getAttribute('data-titulo');
+    const img = card.getAttribute('data-img');
+    const precio = card.getAttribute('data-precio');
+    const info = card.getAttribute('data-info');
+ 
+    document.getElementById('detalleTitulo').textContent = titulo;
+    document.getElementById('detalleImg').src = img;
+    document.getElementById('detallePrecio').textContent = precio;
+    document.getElementById('detalleInfo').textContent = info;
+  });
+
+  // Variables globales
+  let configuracion = {};
+  let datos = [];
+
+  // Cargar datos JSON y YAML
+  async function cargarDatos() {
+    try {
+      const resJSON = await fetch('datos.json');
+      datos = await resJSON.json();
+
+      const resYAML = await fetch('configuracion.yaml');
+      const yamlText = await resYAML.text();
+      configuracion = jsyaml.load(yamlText);
+
+      aplicarConfiguracion();
+      renderizarContenido('all', 'tarjetas');
+    } catch (error) {
+      console.error('Error al cargar datos:', error);
+    }
+  }
+
+  // Aplicar configuraciones desde YAML
+  function aplicarConfiguracion() {
+    document.body.classList.toggle('bg-dark', configuracion.tema === 'oscuro');
+    document.body.classList.toggle('text-light', configuracion.tema === 'oscuro');
+  }
+
+  // Renderizar contenido dinámico
+  function renderizarContenido(categoria, vista) {
+    const contenedor = document.getElementById('contenido');
+    contenedor.innerHTML = '';
+
+    const elementosFiltrados = datos.filter(item => categoria === 'all' || item.categoria === categoria);
+    const elementosPaginados = elementosFiltrados.slice(0, configuracion.elementosPorPagina);
+
+    elementosPaginados.forEach(item => {
+      const card = document.createElement('div');
+      card.className = vista === 'tarjetas' ? 'col-lg-4 col-md-6' : 'col-12';
+      card.innerHTML = `
+        <div class="card modelo-card h-100">
+          ${configuracion.mostrarImagenes ? `<img src="${item.imagen}" class="card-img-top" alt="${item.titulo}">` : ''}
+          <div class="card-body">
+            <h5 class="card-title">${item.titulo}</h5>
+            <p class="text-muted">${item.precio}</p>
+            <p>${item.descripcion}</p>
+          </div>
+        </div>
+      `;
+      contenedor.appendChild(card);
+    });
+  }
+
+  // Eventos de filtro y vista
+  document.getElementById('categoriaFiltro').addEventListener('change', e => {
+    renderizarContenido(e.target.value, document.body.dataset.vista || 'tarjetas');
+  });
+
+  document.getElementById('vistaTarjetas').addEventListener('click', () => {
+    document.body.dataset.vista = 'tarjetas';
+    renderizarContenido(document.getElementById('categoriaFiltro').value, 'tarjetas');
+  });
+
+  document.getElementById('vistaLista').addEventListener('click', () => {
+    document.body.dataset.vista = 'lista';
+    renderizarContenido(document.getElementById('categoriaFiltro').value, 'lista');
+  });
+
+  // Inicializar
+  cargarDatos();
+</script>
+
+<script src="./scripts/app.js"></script> <!-- Link to the JavaScript file -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

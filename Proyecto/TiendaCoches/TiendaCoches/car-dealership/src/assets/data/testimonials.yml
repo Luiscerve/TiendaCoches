@@ -1,0 +1,16 @@
+testimonials:
+  - name: "John Doe"
+    feedback: "The best car dealership experience I've ever had! Highly recommend."
+    rating: 5
+  - name: "Jane Smith"
+    feedback: "Great selection of cars and excellent customer service."
+    rating: 4
+  - name: "Emily Johnson"
+    feedback: "I found the perfect car for my family. Thank you!"
+    rating: 5
+  - name: "Michael Brown"
+    feedback: "Very professional staff and a smooth buying process."
+    rating: 4
+  - name: "Sarah Davis"
+    feedback: "Amazing deals and a wide variety of vehicles to choose from."
+    rating: 5

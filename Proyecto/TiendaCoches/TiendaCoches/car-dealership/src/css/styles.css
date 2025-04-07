@@ -1,0 +1,39 @@
+Sure, here's the contents for the file: /car-dealership/car-dealership/src/css/styles.css
+
+body {
+    padding-top: 80px;
+}
+
+.car-img {
+    height: 500px;
+    object-fit: cover;
+}
+
+.modelo-card {
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.modelo-card:hover {
+    transform: translateY(-10px);
+}
+
+.bg-car-dark {
+    background-color: #1a1a1a;
+}
+
+@media (max-width: 768px) {
+    .car-img {
+        height: 300px;
+    }
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}

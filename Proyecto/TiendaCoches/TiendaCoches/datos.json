@@ -1,0 +1,23 @@
+[
+  {
+    "titulo": "Serie Deportiva",
+    "imagen": "https://images.unsplash.com/photo-1553440569-bcc63803a83d",
+    "precio": "€65,000",
+    "descripcion": "0-100 km/h en 3.8s | Motor híbrido | Diseño deportivo para amantes de la velocidad.",
+    "categoria": "deportivo"
+  },
+  {
+    "titulo": "SUV Premium",
+    "imagen": "https://images.unsplash.com/photo-1549399542-7e3f8b79c341",
+    "precio": "€45,000",
+    "descripcion": "7 plazas | Tracción 4x4 | Ideal para familias con estilo y potencia.",
+    "categoria": "suv"
+  },
+  {
+    "titulo": "Clásicos Restaurados",
+    "imagen": "https://images.unsplash.com/photo-1580273916550-e323be2ae537",
+    "precio": "€85,000",
+    "descripcion": "Edición limitada | Certificado original | Autos con historia.",
+    "categoria": "clasico"
+  }
+]

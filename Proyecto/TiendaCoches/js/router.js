@@ -1,0 +1,1 @@
+// Aquí puedes añadir lógica para manejar navegación por hash si lo necesitas más adelante

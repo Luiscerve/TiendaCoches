@@ -1,0 +1,40 @@
+Sure, here's the contents for the file `/car-dealership/car-dealership/src/components/carousel.html`:
+
+<div class="carousel slide" id="carouselCoches" data-bs-ride="carousel">
+  <div class="carousel-inner" id="carouselItems">
+    <!-- Carousel items will be dynamically inserted here -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselCoches" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselCoches" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<script>
+  async function loadCarouselItems() {
+    const response = await fetch('./assets/data/cars.json');
+    const cars = await response.json();
+    const carouselItemsContainer = document.getElementById('carouselItems');
+
+    cars.forEach((car, index) => {
+      const isActive = index === 0 ? 'active' : '';
+      const carouselItem = `
+        <div class="carousel-item ${isActive}">
+          <img src="${car.image}" class="d-block w-100 car-img" alt="${car.model}">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50">
+            <h5>${car.make} ${car.model}</h5>
+            <p>${car.description}</p>
+            <a href="#modelos" class="btn btn-danger">Ver Modelos</a>
+          </div>
+        </div>
+      `;
+      carouselItemsContainer.insertAdjacentHTML('beforeend', carouselItem);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', loadCarouselItems);
+</script>

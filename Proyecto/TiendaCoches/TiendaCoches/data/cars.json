@@ -1,0 +1,34 @@
+[
+  {
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2020,
+    "price": 20000,
+    "categoria": "suv",
+    "image": "https://s3.abcstatics.com/abc/www/multimedia/motor/2024/03/19/318876_Volvo_EX30_Cloud_Blue_Exterior-RnUNVjketKeE8SL6qDpY2GO-1200x840@diario_abc.jpg"
+  },
+  {
+    "make": "Honda",
+    "model": "Civic",
+    "year": 2021,
+    "price": 22000,
+    "categoria": "deportivo",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaXsBRsAtaET32kwiCPy-bv1T0zYY2OIQhFw&s"
+  },
+  {
+    "make": "Ford",
+    "model": "Mustang",
+    "year": 2019,
+    "price": 26000,
+    "categoria": "deportivo",
+    "image": "https://res.cloudinary.com/driverseat/image/upload/q_auto,dpr_auto,f_auto,c_scale,w_1536/gse90tyjmyl6inbulsbu"
+  },
+  {
+    "make": "Chevrolet",
+    "model": "Camaro",
+    "year": 2022,
+    "price": 30000,
+    "categoria": "deportivo",
+    "image": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/performance/2024-camaro/masthead/2024-camaro-masthead-v3.png?imwidth=960"
+  }
+]

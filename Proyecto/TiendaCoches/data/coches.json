@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "marca": "Audi",
+    "modelo": "A4",
+    "año": 2020,
+    "precio": 30000,
+    "categoria": "berlina",
+    "descripcion": "Cómodo y eficiente, ideal para largos trayectos.",
+    "imagen": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Audi_A4_B9_Limousine.jpg"
+  },
+  {
+    "id": 2,
+    "marca": "BMW",
+    "modelo": "Serie 3",
+    "año": 2021,
+    "precio": 32000,
+    "categoria": "deportivo",
+    "descripcion": "Diseño elegante y gran rendimiento.",
+    "imagen": "https://upload.wikimedia.org/wikipedia/commons/8/88/2019_BMW_320d_M_Sport_Tech_Pack_2.0.jpg"
+  },
+  {
+    "id": 3,
+    "marca": "Mercedes",
+    "modelo": "Clase C",
+    "año": 2019,
+    "precio": 34000,
+    "categoria": "lujo",
+    "descripcion": "Interior premium con tecnología avanzada.",
+    "imagen": "https://upload.wikimedia.org/wikipedia/commons/4/4f/2018_Mercedes-Benz_C200_Avantgarde_sedan_%28W_205_MY18%29.jpg"
+  }
+]
